@@ -63,7 +63,7 @@ import org.instilled.dotter.dom.Edge;
  * See http://www.graphviz.org/content/dot-language for the DOT
  * language.
  */
-public class Dotter
+public final class Dotter
 {
     /**
      * Create an undirected graph.

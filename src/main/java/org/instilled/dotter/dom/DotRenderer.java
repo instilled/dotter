@@ -9,7 +9,7 @@ import java.util.Map.Entry;
  * An trivial {@link Dot} renderer. It supports rendering {@link Dot} to
  * string or a file.
  */
-public abstract class DotRenderer
+public class DotRenderer
 {
     /**
      * Renders the {@link Dot} to a string.
