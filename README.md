@@ -19,21 +19,23 @@ Features
 Installation
 ------------
 The library has not yet been pushed to any public maven repository but 
-installation is still fairly easy. Just download the [src:source] and run
+installation is still fairly easy. Just download the [source][allsrc] and run
 
 `mvn install`
 
 Finally declare it as a maven dependency.
-`<dependency>
+``
+<dependency>
 	<groupId>org.instilled</groupId>
 	<artifactId>Dotter</artifactId>
 	<version>0.0.1</version>
-</depencendy>`
+</dependency>
+``
 
 If your project is not using maven then either compile and package the library 
 or copy the source to your project.
 
-[src:source] 
+[allsrc]: https://github.com/instilled/dotter/zipball/master
 
 Usage
 -----
