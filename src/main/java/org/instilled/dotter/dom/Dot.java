@@ -30,7 +30,7 @@ import org.instilled.dotter.Dotter;
  * @see Dot#node(String)
  * @see Dotter
  */
-public class Dot
+public final class Dot
 {
     private final String _name;
     private final Direction _direction;
