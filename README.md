@@ -22,11 +22,11 @@ installation is still fairly easy. Just download the [source][allsrc] and run
 
 Finally declare it as a maven dependency.
 
-`<dependency>
+  <dependency>
 	<groupId>org.instilled</groupId>
 	<artifactId>Dotter</artifactId>
 	<version>0.0.1</version>`
-</dependency>`
+  </dependency>
 
 If your project is not using maven then either compile and package the library 
 or copy the source to your project.
