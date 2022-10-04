@@ -10,30 +10,25 @@ import java.util.Map;
  * {@link Dot} instance, that is you should always create {@link Edge}s
  * by invoking {@link Dot#edge(String...)}.
  */
-public class Edge
-{
-    private List<Node> _nodes;
+public class Edge {
+    private final List<Node> nodes;
 
-    private Map<String, String> _attrs = new HashMap<String, String>();
+    private final Map<String, String> attrs = new HashMap<String, String>();
 
-    public Edge(List<Node> nodes)
-    {
-        _nodes = nodes;
+    public Edge(List<Node> nodes) {
+        this.nodes = nodes;
     }
 
-    public List<Node> getNodes()
-    {
-        return _nodes;
+    public List<Node> getNodes() {
+        return nodes;
     }
 
-    public Map<String, String> getAttributes()
-    {
-        return _attrs;
+    public Map<String, String> getAttributes() {
+        return attrs;
     }
 
-    public Edge attr(String id, String value)
-    {
-        _attrs.put(id, value);
+    public Edge attr(String id, String value) {
+        attrs.put(id, value);
         return this;
     }
 }

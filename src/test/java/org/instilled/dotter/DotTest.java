@@ -1,20 +1,19 @@
 package org.instilled.dotter;
 
-import static org.junit.Assert.assertEquals;
-
 import org.instilled.dotter.dom.Direction;
 import org.instilled.dotter.dom.Dot;
 import org.instilled.dotter.dom.Node;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class DotTest
-{
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+public class DotTest {
     /**
      * Tests {@link Dot} behaves as it should.
      */
     @Test
-    public void testGraph()
-    {
+    public void testGraph() {
         Dot dot = Dotter.graph("First");
 
         dot.node("a").attr("shape", "box").attr("label", "Root");
@@ -22,10 +21,10 @@ public class DotTest
         dot.edge("b", "c");
         dot.edge("b", "d");
 
-        assertEquals("First", dot.getName());
-        assertEquals(Direction.UNDIRECTED, dot.getDirection());
-        assertEquals(4, dot.getNodes().size());
-        assertEquals(3, dot.getEdges().size());
+        assertThat(dot.getName()).isEqualTo("First");
+        assertThat(dot.getDirection()).isEqualTo(Direction.UNDIRECTED);
+        assertThat(dot.getNodes()).hasSize(4);
+        assertThat(dot.getEdges()).hasSize(3);
     }
 
     /**
@@ -33,52 +32,36 @@ public class DotTest
      * (digraph).
      */
     @Test
-    public void testDigraph()
-    {
+    public void testDigraph() {
         Dot dot = Dotter.digraph("Digraph");
-        assertEquals("Digraph", dot.getName());
-        assertEquals(Direction.DIRECTED, dot.getDirection());
+        assertThat(dot.getName()).isEqualTo("Digraph");
+        assertThat(dot.getDirection()).isEqualTo(Direction.DIRECTED);
 
         dot.edge("a", "b");
-        assertEquals(2, dot.getNodes().size());
-        assertEquals(1, dot.getEdges().size());
+        assertThat(dot.getNodes()).hasSize(2);
+        assertThat(dot.getEdges()).hasSize(1);
     }
 
     /**
      * Test support for Object.
      */
     @Test
-    public void testObjectSupport()
-    {
+    public void testObjectSupport() {
         Dot dot = Dotter.graph("ObjectSupport");
-        assertEquals("ObjectSupport", dot.getName());
-        assertEquals(Direction.UNDIRECTED, dot.getDirection());
+        assertThat(dot.getName()).isEqualTo("ObjectSupport");
+        assertThat(dot.getDirection()).isEqualTo(Direction.UNDIRECTED);
 
         dot.edge(new Object1(), "node2", new Object2());
-        assertEquals(3, dot.getNodes().size());
-        assertEquals(1, dot.getEdges().size());
-
-        // Make sure the correct Dot#node method was invoked
-        // for String arguments
-        boolean found = false;
-        for (Node node : dot.getNodes())
-        {
-            if ("node2".equals(node.getId()))
-            {
-                found = true;
-                break;
-            }
-        }
-        assertEquals("Could not find the nodes name.", true, found);
+        assertThat(dot.getNodes()).hasSize(3);
+        assertThat(dot.getEdges()).hasSize(1);
+        assertThat(dot.getNodes()).extracting(Node::getId).contains("node2");
     }
 
-    @Test(expected = IllegalStateException.class)
-    public void testTooFewEdges()
-    {
+    @Test
+    public void testTooFewEdges() {
         Dot dot = Dotter.digraph("Digraph");
-        assertEquals("Digraph", dot.getName());
-        assertEquals(Direction.DIRECTED, dot.getDirection());
-
-        dot.edge("a");
+        assertThat(dot.getName()).isEqualTo("Digraph");
+        assertThat(dot.getDirection()).isEqualTo(Direction.DIRECTED);
+        assertThatThrownBy(() -> dot.edge("a")).isInstanceOf(IllegalStateException.class);
     }
 }
