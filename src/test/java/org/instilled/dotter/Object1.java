@@ -1,8 +1,7 @@
 package org.instilled.dotter;
 
 /**
- *  used for testing only
+ * used for testing only
  */
-public class Object1
-{
+public class Object1 {
 }

@@ -6,30 +6,25 @@ import java.util.Map;
 /**
  * Represents a node in the dot language.
  */
-public class Node
-{
-    private String _id;
+public class Node {
+    private final String id;
 
-    private Map<String, String> _attrs = new HashMap<String, String>();
+    private final Map<String, String> attrs = new HashMap<String, String>();
 
-    public Node(String id)
-    {
-        _id = id;
+    public Node(String id) {
+        this.id = id;
     }
 
-    public String getId()
-    {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public Map<String, String> getAttributes()
-    {
-        return _attrs;
+    public Map<String, String> getAttributes() {
+        return attrs;
     }
 
-    public Node attr(String id, String value)
-    {
-        _attrs.put(id, value);
+    public Node attr(String id, String value) {
+        attrs.put(id, value);
         return this;
     }
 
